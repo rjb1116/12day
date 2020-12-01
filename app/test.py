@@ -9,10 +9,15 @@ def pretty_print_response(response):
 	print(json.dumps(response, indent=2, sort_keys=True))
 
 key = 'S0D1315IPQVMPSX0'
-ticker = 'AAPL'
+ticker = 'AAPi'
 url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={}&apikey={}'.format(ticker, key)
 response = requests.get(url).json()
+if 'Error Message' in response.keys():
+	print('True')
 
+
+
+'''
 df = pd.DataFrame(response["Time Series (Daily)"]).transpose().reset_index().rename(columns={'index':'date'})
 
 df['date'] = pd.to_datetime(df['date'])
@@ -30,4 +35,4 @@ fig.line(
 )
 
 show(fig)
-
+'''
